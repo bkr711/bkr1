@@ -256,3 +256,63 @@ function updateStats() {
 function saveTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
+
+
+// عرض رسائل التنبيه
+function showAlert(message, type) {
+    // إنشاء عنصر التنبيه
+    const alertEl = document.createElement('div');
+    alertEl.className = `alert alert-${type}`;
+    alertEl.textContent = message;
+    
+    // إضافة أنماط CSS للتنبيه
+    alertEl.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 25px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 600;
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    `;
+    
+    // تحديد اللون حسب نوع التنبيه
+    if (type === 'success') {
+        alertEl.style.backgroundColor = '#00b894';
+    } else if (type === 'error') {
+        alertEl.style.backgroundColor = '#e74c3c';
+    } else if (type === 'info') {
+        alertEl.style.backgroundColor = '#3498db';
+    }
+    
+    // إضافة التنبيه إلى الجسم
+    document.body.appendChild(alertEl);
+    
+    // إزالة التنبيه بعد 3 ثوانٍ
+    setTimeout(() => {
+        alertEl.style.animation = 'slideOut 0.3s ease-out forwards';
+        setTimeout(() => {
+            document.body.removeChild(alertEl);
+        }, 300);
+    }, 3000);
+    
+    // إضافة أنماط الحركة
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { top: -100px; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { top: 20px; opacity: 1; }
+            to { top: -100px; opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+
