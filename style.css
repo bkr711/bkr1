@@ -187,3 +187,41 @@ header h1 i {
 }
 
 
+.tasks-section {
+    margin-bottom: 30px;
+}
+
+.tasks-section h2 {
+    color: #2d3436;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#tasksContainer {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #636e72;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #b2bec3;
+}
+
+.empty-state p {
+    font-size: 1.2rem;
+}
+
+
