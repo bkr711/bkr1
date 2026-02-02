@@ -225,3 +225,19 @@ function clearCompletedTasks() {
     }
 }
 
+bash
+// حذف جميع المهام
+function clearAllTasks() {
+    if (tasks.length === 0) {
+        showAlert('لا توجد مهام للحذف', 'info');
+        return;
+    }
+    
+    if (confirm('هل أنت متأكد من حذف جميع المهام؟ لا يمكن التراجع عن هذا الإجراء.')) {
+        tasks = [];
+        saveTasks();
+        renderTasks();
+        updateStats();
+        showAlert('تم حذف جميع المهام', 'success');
+    }
+}
