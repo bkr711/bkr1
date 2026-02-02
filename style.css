@@ -249,3 +249,26 @@ header h1 i {
 }
 
 
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.task-checkbox {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #00b894;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 1.1rem;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #636e72;
+}
