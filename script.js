@@ -241,3 +241,14 @@ function clearAllTasks() {
         showAlert('تم حذف جميع المهام', 'success');
     }
 }
+// تحديث الإحصائيات
+function updateStats() {
+    const total = tasks.length;
+    const completed = tasks.filter(task => task.completed).length;
+    const pending = total - completed;
+    
+    totalTasksElement.textContent = total;
+    completedTasksElement.textContent = completed;
+    pendingTasksElement.textContent = pending;
+}
+
