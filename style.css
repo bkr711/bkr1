@@ -308,3 +308,12 @@ header h1 i {
 .delete-btn:hover {
     background: rgba(231, 76, 60, 0.1);
 }
+
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
