@@ -79,3 +79,55 @@ function addTask() {
     showAlert('تمت إضافة المهمة بنجاح', 'success');
 }
 
+// عرض المهام في الواجهة
+function renderTasks() {
+    // تصفية المهام حسب التصفية الحالية
+    let filteredTasks = tasks;
+    
+    if (currentFilter === 'pending') {
+        filteredTasks = tasks.filter(task => !task.completed);
+    } else if (currentFilter === 'completed') {
+        filteredTasks = tasks.filter(task => task.completed);
+    }
+    
+    // إذا لم تكن هناك مهام
+    if (filteredTasks.length === 0) {
+        let message = '';
+        switch(currentFilter) {
+            case 'pending': message = 'لا توجد مهام قيد الانتظار'; break;
+            case 'completed': message = 'لا توجد مهام مكتملة'; break;
+            default: message = 'لا توجد مهام حالياً. أضف مهمة جديدة لتبدأ!';
+        }
+        
+        tasksContainer.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-clipboard-list"></i>
+                <p>${message}</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // إنشاء HTML للمهام
+    const tasksHTML = filteredTasks.map(task => `
+        <div class="task-item ${task.completed ? 'completed' : ''}" data-id="${task.id}">
+            <div class="task-content">
+                <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''}>
+                <span class="task-text">${task.text}</span>
+            </div>
+            <div class="task-actions">
+                <button class="edit-btn" title="تعديل المهمة">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="delete-btn" title="حذف المهمة">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+    
+    tasksContainer.innerHTML = tasksHTML;
+    
+    // إضافة مستمعي الأحداث للمهام المعروضة
+    addTaskEventListeners();
+}
