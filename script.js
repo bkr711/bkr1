@@ -207,3 +207,21 @@ function editTask(taskId) {
         showAlert('تم تعديل المهمة بنجاح', 'success');
     }
 }
+
+
+// حذف جميع المهام المكتملة
+function clearCompletedTasks() {
+    if (!tasks.some(task => task.completed)) {
+        showAlert('لا توجد مهام مكتملة للحذف', 'info');
+        return;
+    }
+    
+    if (confirm('هل أنت متأكد من حذف جميع المهام المكتملة؟')) {
+        tasks = tasks.filter(task => !task.completed);
+        saveTasks();
+        renderTasks();
+        updateStats();
+        showAlert('تم حذف جميع المهام المكتملة', 'success');
+    }
+}
+
