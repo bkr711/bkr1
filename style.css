@@ -225,3 +225,27 @@ header h1 i {
 }
 
 
+.task-item {
+    background: white;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+    border-right: 5px solid #6a11cb;
+}
+
+.task-item:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.completed {
+    opacity: 0.8;
+    border-right-color: #00b894;
+}
+
+
