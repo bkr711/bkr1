@@ -192,3 +192,18 @@ function deleteTask(taskId) {
     }
 }
 
+// تعديل المهمة
+function editTask(taskId) {
+    const task = tasks.find(task => task.id === taskId);
+    
+    if (!task) return;
+    
+    const newText = prompt('قم بتعديل نص المهمة:', task.text);
+    
+    if (newText !== null && newText.trim() !== '') {
+        task.text = newText.trim();
+        saveTasks();
+        renderTasks();
+        showAlert('تم تعديل المهمة بنجاح', 'success');
+    }
+}
