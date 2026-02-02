@@ -161,3 +161,23 @@ function addTaskEventListeners() {
 }
 
 
+// تبديل حالة إكمال المهمة
+function toggleTaskCompletion(taskId) {
+    const taskIndex = tasks.findIndex(task => task.id === taskId);
+    
+    if (taskIndex !== -1) {
+        tasks[taskIndex].completed = !tasks[taskIndex].completed;
+        saveTasks();
+        renderTasks();
+        updateStats();
+        
+        // عرض رسالة
+        const message = tasks[taskIndex].completed 
+            ? 'تم تعيين المهمة كمكتملة' 
+            : 'تم تعيين المهمة كقيد الانتظار';
+        showAlert(message, 'success');
+    }
+}
+
+
+
