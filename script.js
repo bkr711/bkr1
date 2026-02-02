@@ -131,3 +131,33 @@ function renderTasks() {
     // إضافة مستمعي الأحداث للمهام المعروضة
     addTaskEventListeners();
 }
+
+
+// إضافة مستمعي الأحداث للمهام
+function addTaskEventListeners() {
+    // مستمع حدث للتحقق من إكمال المهمة
+    document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const taskId = parseInt(this.closest('.task-item').getAttribute('data-id'));
+            toggleTaskCompletion(taskId);
+        });
+    });
+    
+    // مستمع حدث لحذف المهمة
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const taskId = parseInt(this.closest('.task-item').getAttribute('data-id'));
+            deleteTask(taskId);
+        });
+    });
+    
+    // مستمع حدث لتعديل المهمة
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const taskId = parseInt(this.closest('.task-item').getAttribute('data-id'));
+            editTask(taskId);
+        });
+    });
+}
+
+
