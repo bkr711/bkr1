@@ -40,3 +40,42 @@ function initApp() {
     });
 }
 
+// إضافة مهمة جديدة
+function addTask() {
+    const taskText = taskInput.value.trim();
+    
+    if (taskText === '') {
+        showAlert('يرجى إدخال نص المهمة', 'error');
+        return;
+    }
+    
+    // إنشاء كائن المهمة الجديدة
+    const newTask = {
+        id: Date.now(),
+        text: taskText,
+        completed: false,
+        createdAt: new Date().toISOString()
+    };
+    
+    // إضافة المهمة إلى المصفوفة
+    tasks.unshift(newTask);
+    
+    // حفظ في التخزين المحلي
+    saveTasks();
+    
+    // إعادة عرض المهام
+    renderTasks();
+    
+    // تحديث الإحصائيات
+    updateStats();
+    
+    // مسح حقل الإدخال
+    taskInput.value = '';
+    
+    // إعادة التركيز على حقل الإدخال
+    taskInput.focus();
+    
+    // عرض رسالة نجاح
+    showAlert('تمت إضافة المهمة بنجاح', 'success');
+}
+
