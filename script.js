@@ -181,3 +181,14 @@ function toggleTaskCompletion(taskId) {
 
 
 
+// حذف المهمة
+function deleteTask(taskId) {
+    if (confirm('هل أنت متأكد من حذف هذه المهمة؟')) {
+        tasks = tasks.filter(task => task.id !== taskId);
+        saveTasks();
+        renderTasks();
+        updateStats();
+        showAlert('تم حذف المهمة بنجاح', 'success');
+    }
+}
+
